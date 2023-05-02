@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-# coding: utf-8
-
-# In[4]:
 
 
 import requests
@@ -13,8 +10,6 @@ import datetime
 import re
 warnings.filterwarnings("ignore") # To ingore SSL error if it accure
 
-
-# In[5]:
 
 
 def download_file(url):
@@ -33,9 +28,6 @@ def download_file(url):
 def Convert(string):
     li = list(string.split(","))
     return li
-
-
-# In[7]:
 
 
 print ("Enter Nessus IP address and port (example: 10.0.0.1:8834)")
@@ -73,8 +65,6 @@ while True:
         print ("WARNING! Incorrect API keys. Try again.") 
 
 
-# In[9]:
-
 
 url = "https://"+s_address+"/scans"
 
@@ -87,20 +77,12 @@ response = requests.request("GET", url, headers=headers, data=payload, verify=Fa
 #print (response.text)
 
 
-# In[10]:
-
-
 y = json.loads(response.text)
 folders = y["folders"]
 scans = y["scans"]
-
  
 list_folders = pd.DataFrame(folders)
 print(list_folders[["id","name"]].to_string(index = False)) 
-
-
-# In[11]:
-
 
 scans_table = pd.DataFrame(scans)
 print ("--"*10)
@@ -111,18 +93,10 @@ list_scans = scans_table[scans_table.folder_id==f_n]
 print(list_scans[["id","name"]].to_string(index = False)) 
 
 
-# In[ ]:
-
 
 print ("--"*10)
 print('Enter scan id (You can enter multiple scans. Example: 105,240,196).')
 sn_list = Convert(input())
-
-
-#print (d_fn+"_"+today)
-
-
-# In[76]:
 
 
 print ("Choose the report format (1-2):\n 1. CSV \n 2. Nessus") 
@@ -144,10 +118,6 @@ if f_t == "2":
     
 #if f_t == "4":
 #    report_format = "html"
-
-
-# In[77]:
-
 
 for s_n in sn_list:
     
@@ -220,9 +190,6 @@ for s_n in sn_list:
 
     
 print ("---DONE!---")
-
-
-# In[ ]:
 
 
 
