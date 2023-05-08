@@ -13,7 +13,7 @@ warnings.filterwarnings("ignore") # To ingore SSL error if it accure
 
 
 def download_file(url):
-    local_filename = "Downloaded/"+d_fn+"_"+today+"."+report_format
+    local_filename = d_fn+"_"+today+"."+report_format
     # NOTE the stream=True parameter below
     with requests.get(url,headers=headers, data=payload, verify=False, stream=True) as r:
         r.raise_for_status()
@@ -67,6 +67,7 @@ while True:
 
 
 url = "https://"+s_address+"/scans"
+srv_url = url
 
 payload={}
 headers = {
@@ -122,7 +123,7 @@ if f_t == "2":
 for s_n in sn_list:
     
     
-    url = srv_url+s_n+"/export" 
+    url = srv_url+"/"+s_n+"/export" 
 
     payload = json.dumps({
       "format": report_format
@@ -149,7 +150,7 @@ for s_n in sn_list:
         token=(tf_json["token"])
         file=(tf_json["file"])
 
-        url = srv_url+s_n+"/export/"+str(file)+"/status"
+        url = srv_url+"/"+s_n+"/export/"+str(file)+"/status"
 
         payload={}
         headers = {
@@ -157,7 +158,7 @@ for s_n in sn_list:
         }
 
         response_status = requests.request("GET", url, headers=headers, data=payload, verify=False)
-
+        print (response_status.text)
         if ((response_status.text == '{"status":"ready"}') or (timeout == 5000000)):
             break
         else:
@@ -169,7 +170,7 @@ for s_n in sn_list:
     print("Checking export status: ",response_status.text)
 
 
-    url = srv_url+s_n+"/export/"+str(file)+"/download" # Скачиваем отчёт
+    url = srv_url+"/"+s_n+"/export/"+str(file)+"/download"
 
     payload={
     }
