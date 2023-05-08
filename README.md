@@ -7,7 +7,7 @@ Run this .py file with python3:<br/>
 <br/>
 <br/>
 Then follow the instructions indicated in the script:
-
+$ python Nessus-API-Report-Exporter.py
 ```
 id name
 2 Trash
