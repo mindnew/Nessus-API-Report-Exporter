@@ -12,20 +12,18 @@ $ python Nessus-API-Report-Exporter.py
 id name
 2 Trash
 3 My Scans
-5 Discovery
-9 regular scan
 --------------------
 Enter folder id:
 3
 --------------------
 id name
-216 10.227.97.65_ASTRA
-191 Alpha_tst
-173 AZON
-175 Logistika_AlfaGO
+200 Scan1
+231 Scan2
+244 Scan3
+266 Scan4
 --------------------
 Enter scan id (You can enter multiple scans. Example: 105,240,196).
-173
+231
 Choose the report format (1-2):
 1. CSV
 2. Nessus
@@ -38,6 +36,6 @@ Wait untill the report will be prepared
 --------------------
 Checking export status: {"status":"ready"}
 --------------------
-File saved as: AZON_08-05-2023.csv
+File saved as: Scan2.csv
 ---DONE!---
 ```
